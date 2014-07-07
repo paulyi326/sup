@@ -38,6 +38,16 @@ angular.module('sup', ['ionic', 'sup.controllers', 'sup.services'])
 
     // Each tab has its own nav history stack:
 
+    .state('tab.signup', {
+      url: '/signup',
+      views: {
+        'signup': {
+          templateUrl: 'templates/signup.html',
+          controller: 'AuthCtrl'
+        }
+      }
+    })
+
     .state('tab.friends', {
       url: '/friends',
       views: {
@@ -47,8 +57,9 @@ angular.module('sup', ['ionic', 'sup.controllers', 'sup.services'])
         }
       }
     })
+    
     .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+      url: '/friend/:friendId', // this becomes stateParams.friendId
       views: {
         'tab-friends': {
           templateUrl: 'templates/friend-detail.html',
@@ -68,7 +79,7 @@ angular.module('sup', ['ionic', 'sup.controllers', 'sup.services'])
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/friends');
+  $urlRouterProvider.otherwise('/tab/signup');
 
 });
 
