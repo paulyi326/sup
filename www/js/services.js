@@ -61,6 +61,7 @@ angular.module('sup.services', [])
     removeSup: function(friendEmail) {
       var supRef = ref.child($rootScope.currentUser.email + '/sup' + '/' + friendEmail);
       supRef.remove();
+      User.sup(friendEmail);
     }
   };
 
