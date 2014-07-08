@@ -19,6 +19,7 @@ angular.module('sup.controllers', [])
         if (users[user].password === $scope.user.password) {
           console.log('correct password');
           $location.path('tab/friends');
+
           return;
         }
         console.log('incorrect password');
@@ -57,6 +58,6 @@ angular.module('sup.controllers', [])
   $scope.friend = User.find($stateParams.friendId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('SupCtrl', function($scope) {
   
 });

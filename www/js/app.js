@@ -80,12 +80,12 @@ angular.module('sup', ['ionic', 'firebase', 'sup.controllers', 'sup.services'])
       }
     })
 
-    .state('tab.account', {
-      url: '/account',
+    .state('tab.sup', {
+      url: '/sup',
       views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'tab-sup': {
+          templateUrl: 'templates/tab-sup.html',
+          controller: 'SupCtrl'
         }
       }
     })
