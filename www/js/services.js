@@ -55,8 +55,12 @@ angular.module('sup.services', [])
     supList: function() {
       var userRef = ref.child($rootScope.currentUser.email + '/sup');
       var supList = $firebase(userRef);
-      
+
       return supList;
+    },
+    removeSup: function(friendEmail) {
+      var supRef = ref.child($rootScope.currentUser.email + '/sup' + '/' + friendEmail);
+      supRef.remove();
     }
   };
 

@@ -50,5 +50,8 @@ angular.module('sup.controllers', [])
 
 .controller('SupCtrl', function($scope, User) {
   $scope.supList = User.supList();
-  console.log($scope.supList);
+
+  $scope.removeSup = function(friendEmail) {
+    User.removeSup(friendEmail);
+  }
 });
