@@ -38,7 +38,7 @@ angular.module('sup.controllers', [])
 
   $scope.sup = function(friendEmail) {
     // console.log(friendEmail);
-
+    console.log(User.supList());
     User.sup(friendEmail);
   }
 
@@ -49,5 +49,6 @@ angular.module('sup.controllers', [])
 })
 
 .controller('SupCtrl', function($scope, User) {
-  $scope.friends = User.all;
+  $scope.supList = User.supList();
+  console.log($scope.supList);
 });

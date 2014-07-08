@@ -42,7 +42,7 @@ angular.module('sup.services', [])
     },
     sup: function(friendEmail) {
       var userRef = ref.child(friendEmail + '/sup');
-      console.log(userRef.toString())
+      // console.log(userRef.toString())
       // userRef.on('child_removed', function() {
       //   console.log('child was removed');
       // })
@@ -53,8 +53,10 @@ angular.module('sup.services', [])
       // supRef.set(null);
     },
     supList: function() {
-      var userRef = ref.child($rootScope.currentUser.email);
-
+      var userRef = ref.child($rootScope.currentUser.email + '/sup');
+      var supList = $firebase(userRef);
+      
+      return supList;
     }
   };
 
