@@ -13,19 +13,14 @@ angular.module('sup.controllers', [])
 
   $scope.loginUser = function() {
     var users = $scope.allUsers;
-    for (var user in users) {
-      if (users[user].email === $scope.user.email) {
-        console.log('correct email')
-        if (users[user].password === $scope.user.password) {
-          console.log('correct password');
-          $location.path('tab/friends');
-
-          return;
-        }
-        console.log('incorrect password');
+    if (users.hasOwnProperty($scope.user.email)) {
+      var user = users[$scope.user.email];
+      if (user.password === $scope.user.password) {
+        $location.path('tab/friends');
+        return;
       }
+      console.log('incorrect password');
     }
-    console.log('incorrect email')
   };
 
 })

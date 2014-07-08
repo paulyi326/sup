@@ -31,7 +31,11 @@ angular.module('sup.services', [])
   var User = {
     all: users,
     create: function(user) {
-      return users.$add(user);
+      console.log(ref.toString());
+      var userObj = {};
+      userObj[user.email] = user;
+      ref.update(userObj);
+      // return users.$add(user);
     },
     find: function(userId) {
       return users.$child(userId);
