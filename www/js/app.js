@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('sup', ['ionic', 'sup.controllers', 'sup.services', 'firebase'])
+angular.module('sup', ['ionic', 'firebase', 'sup.controllers', 'sup.services'])
+
+.constant('FIREBASE_URL', 'https://blistering-fire-5191.firebaseIO.com/')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
