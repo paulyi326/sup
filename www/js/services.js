@@ -21,7 +21,7 @@ angular.module('sup.services', [])
 //   return Sup;
 // })
 
-.factory('User', function($firebase, FIREBASE_URL) {
+.factory('User', function($rootScope, $firebase, FIREBASE_URL) {
   // Might use a resource here that returns a JSON array
 
   var ref = new Firebase(FIREBASE_URL + 'users');
@@ -37,20 +37,24 @@ angular.module('sup.services', [])
       ref.update(userObj);
       // return users.$add(user);
     },
-    find: function(userId) {
-      return users.$child(userId);
+    delete: function(userEmail) {
+      return users.$remove(userEmail);
     },
-    delete: function(userId) {
-      return users.$remove(userId);
+    sup: function(friendEmail) {
+      var userRef = ref.child(friendEmail + '/sup');
+      console.log(userRef.toString())
+      // userRef.on('child_removed', function() {
+      //   console.log('child was removed');
+      // })
+      var friendObj = {};
+      friendObj[$rootScope.currentUser.email] = true;
+      userRef.update(friendObj);
+      // var supRef = userRef.child('sup');
+      // supRef.set(null);
     },
-    sup: function(id) {
-      var userRef = ref.child(id);
-      userRef.on('child_removed', function() {
-        console.log('child was removed');
-      })
-      userRef.update({sup: true});
-      var supRef = userRef.child('sup');
-      supRef.set(null);
+    supList: function() {
+      var userRef = ref.child($rootScope.currentUser.email);
+
     }
   };
 

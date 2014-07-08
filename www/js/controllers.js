@@ -1,13 +1,15 @@
 angular.module('sup.controllers', [])
 
-.controller('AuthCtrl', function($scope, $location, User) {
+.controller('AuthCtrl', function($rootScope, $scope, $location, User) {
   $scope.user = {};
+  // $scope.user.sup = {skip: 'skip'};
   $scope.allUsers = User.all;
   $scope.createUser = function() {
     // console.log('user email: ', $scope.user.email);
     // console.log('user password: ', $scope.user.password);
     // console.log($scope.user);
     User.create($scope.user);
+    $rootScope.currentUser = $scope.user;
     $location.path('/tab/friends');
   };
 
@@ -16,6 +18,7 @@ angular.module('sup.controllers', [])
     if (users.hasOwnProperty($scope.user.email)) {
       var user = users[$scope.user.email];
       if (user.password === $scope.user.password) {
+        $rootScope.currentUser = $scope.user;
         $location.path('tab/friends');
         return;
       }
@@ -33,26 +36,18 @@ angular.module('sup.controllers', [])
     User.create(friend);
   };
 
-  $scope.sup = function(friendId) {
-    console.log(friendId);
-    /* 
-      I can log friendId here, meaning when I click, I can add data
-      to the friend on firebase. So I can add a sup property and
-      on that change, trigger some event from the friend's persepective
-    */
-    User.sup(friendId);
+  $scope.sup = function(friendEmail) {
+    // console.log(friendEmail);
+
+    User.sup(friendEmail);
   }
 
-  // $scope.sup = function() {
-  //   console.log('SUP');
-  //   Sup.sup();
-  // }
 })
 
 .controller('FriendDetailCtrl', function($scope, $stateParams, User) {
   $scope.friend = User.find($stateParams.friendId);
 })
 
-.controller('SupCtrl', function($scope) {
-  
+.controller('SupCtrl', function($scope, User) {
+  $scope.friends = User.all;
 });
