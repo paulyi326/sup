@@ -50,6 +50,16 @@ angular.module('sup', ['ionic', 'firebase', 'sup.controllers', 'sup.services'])
       }
     })
 
+    .state('tab.login', {
+      url: '/login',
+      views: {
+        'login': {
+          templateUrl: 'templates/login.html',
+          controller: 'AuthCtrl'
+        }
+      }
+    })
+
     .state('tab.friends', {
       url: '/friends',
       views: {
@@ -61,7 +71,7 @@ angular.module('sup', ['ionic', 'firebase', 'sup.controllers', 'sup.services'])
     })
     
     .state('tab.friend-detail', {
-      url: '/friend/:friendId', // this becomes stateParams.friendId
+      url: '/friends/:friendId', // this becomes stateParams.friendId
       views: {
         'tab-friends': {
           templateUrl: 'templates/friend-detail.html',
