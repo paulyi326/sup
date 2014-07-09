@@ -28,6 +28,7 @@ angular.module('sup.services', [])
 
     sup: function(friendEmail) {
       var userRef = ref.child(friendEmail + '/sup');
+      var otherRef = ref.child(friendEmail);
       // userRef.once('child_removed', function() {
       //   // if ($rootScope.currentUser.email === friendEmail) {
       //   // }
@@ -36,9 +37,9 @@ angular.module('sup.services', [])
       var friendObj = {};
       friendObj[$rootScope.currentUser.email] = true;
       userRef.update(friendObj);
-      // userRef.update({toBeRemoved: 'true'});
-      // userRef.child('toBeRemoved').remove();
-      userRef.remove();
+      otherRef.update({toBeRemoved: 'true'});
+      otherRef.child('toBeRemoved').remove();
+      // userRef.remove();
     },
 
     setSupListener: function() {
