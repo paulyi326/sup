@@ -65,13 +65,9 @@ angular.module('sup.controllers', [])
   }
 })
 
-.controller('SupCtrl', function($rootScope, $scope, $ionicPopup, User) {
+.controller('SupCtrl', function($scope, $ionicPopup, User) {
   $scope.supList = User.supList();
-  $rootScope.showAlert = function() {
-    var alertPopup = $ionicPopup.alert({
-      title: 'Someone sent you a sup'
-    });
-  } 
+
 
   $scope.removeSup = function(friendEmail) {
     User.removeSup(friendEmail);
