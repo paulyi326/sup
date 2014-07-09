@@ -36,9 +36,9 @@ angular.module('sup.services', [])
       var friendObj = {};
       friendObj[$rootScope.currentUser.email] = true;
       userRef.update(friendObj);
-      userRef.update({toBeRemoved: 'true'});
-      // console.log(userRef.child('toBeRemoved'));
-      userRef.child('toBeRemoved').remove();
+      // userRef.update({toBeRemoved: 'true'});
+      // userRef.child('toBeRemoved').remove();
+      userRef.remove();
     },
 
     setSupListener: function() {

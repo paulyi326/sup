@@ -36,6 +36,8 @@ angular.module('sup.services', [])
       var friendObj = {};
       friendObj[$rootScope.currentUser.email] = true;
       userRef.update(friendObj);
+      // userRef.update({toBeRemoved: 'true'});
+      // userRef.child('toBeRemoved').remove();
       userRef.remove();
     },
 

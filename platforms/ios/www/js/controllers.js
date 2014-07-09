@@ -29,18 +29,10 @@ angular.module('sup.controllers', [])
 
 })
 
-.controller('PopupCtrl', function($scope, $ionicPopup) {
-  $scope.showAlert = function() {
-   var alertPopup = $ionicPopup.alert({
-     title: 'Someone sent you a sup'
-   });
- };
-})
-
 .controller('FriendsCtrl', function($scope, $rootScope, $ionicPopup, User) {
   $rootScope.showAlert = function() {
     var alertPopup = $ionicPopup.alert({
-      title: 'aaaahhhhhh'
+      title: 'sup'
     });
   } 
 
