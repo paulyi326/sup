@@ -20,6 +20,7 @@ angular.module('sup.controllers', [])
       if (user.password === $scope.user.password) {
         $rootScope.currentUser = $scope.user;
         $location.path('tab/friends');
+        User.setSupListener();
         return;
       }
       console.log('incorrect password');
@@ -28,8 +29,14 @@ angular.module('sup.controllers', [])
 
 })
 
-.controller('FriendsCtrl', function($scope, User) {
-  $scope.friends = User.all;
+.controller('FriendsCtrl', function($scope, $rootScope, $ionicPopup, User) {
+  $rootScope.showAlert = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'sup'
+    });
+  } 
+
+  $scope.friends = User.getFriends();
   // console.log($scope.friends);
 
   $scope.addFriend = function(friend) {
@@ -38,18 +45,33 @@ angular.module('sup.controllers', [])
 
   $scope.sup = function(friendEmail) {
     // console.log(friendEmail);
-    console.log(User.supList());
+    // console.log(User.supList());
     User.sup(friendEmail);
   }
 
 })
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, User) {
-  $scope.friend = User.find($stateParams.friendId);
+.controller('AddFriendCtrl', function($scope, User) {
+  $scope.friend = {};
+
+  $scope.addFriend = function() {
+    $scope.allUsers = User.all;
+    if ($scope.allUsers.hasOwnProperty($scope.friend.email)) {
+      // console.log('my friends email: ', $scope.friend.email);
+      User.addFriend($scope.friend);
+    } else {
+      console.log('this user does not exist');
+    }
+  }
 })
 
-.controller('SupCtrl', function($scope, User) {
+.controller('SupCtrl', function($rootScope, $scope, $ionicPopup, User) {
   $scope.supList = User.supList();
+  $rootScope.showAlert = function() {
+    var alertPopup = $ionicPopup.alert({
+      title: 'Someone sent you a sup'
+    });
+  } 
 
   $scope.removeSup = function(friendEmail) {
     User.removeSup(friendEmail);

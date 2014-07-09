@@ -1,0 +1,9 @@
+<ion-view title="Sup">
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="(friendEmail, friend) in supList" ng-click='removeSup(friendEmail)'>
+        {{friendEmail}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

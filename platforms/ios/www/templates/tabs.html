@@ -5,16 +5,31 @@
 -->
 <ion-tabs class="tabs-icon-top">
 
+  <!-- Signup Tab -->
+  <ion-tab title="Signup" icon="icon ion-key" href="#/tab/signup">
+    <ion-nav-view name="signup"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Login Tab -->
+  <ion-tab title="Login" icon="icon ion-checkmark" href="#/tab/login">
+    <ion-nav-view name="login"></ion-nav-view>
+  </ion-tab>
+
   <!-- Friends Tab -->
-  <ion-tab title="Friends" icon="icon ion-heart" href="#/tab/friends">
+  <ion-tab title="Friends" icon="icon ion-android-friends" href="#/tab/friends">
     <ion-nav-view name="tab-friends"></ion-nav-view>
   </ion-tab>
 
-
-  <!-- Account Tab -->
-  <ion-tab title="Account" icon="icon ion-gear-b" href="#/tab/account">
-    <ion-nav-view name="tab-account"></ion-nav-view>
+  <!-- Add Friend Tab -->
+  <ion-tab title="Add Friend" icon="icon ion-person-add" href="#/tab/addFriend">
+    <ion-nav-view name="tab-addFriend"></ion-nav-view>
   </ion-tab>
+
+  <!-- Sup Tab -->
+  <ion-tab title="Sup" icon="icon ion-ios7-paperplane" href="#/tab/sup">
+    <ion-nav-view name="tab-sup"></ion-nav-view>
+  </ion-tab>
+
 
 
 </ion-tabs>

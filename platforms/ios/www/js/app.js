@@ -5,7 +5,9 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('sup', ['ionic', 'sup.controllers', 'sup.services'])
+angular.module('sup', ['ionic', 'firebase', 'sup.controllers', 'sup.services'])
+
+.constant('FIREBASE_URL', 'https://blistering-fire-5191.firebaseIO.com/')
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -38,6 +40,26 @@ angular.module('sup', ['ionic', 'sup.controllers', 'sup.services'])
 
     // Each tab has its own nav history stack:
 
+    .state('tab.signup', {
+      url: '/signup',
+      views: {
+        'signup': {
+          templateUrl: 'templates/signup.html',
+          controller: 'AuthCtrl'
+        }
+      }
+    })
+
+    .state('tab.login', {
+      url: '/login',
+      views: {
+        'login': {
+          templateUrl: 'templates/login.html',
+          controller: 'AuthCtrl'
+        }
+      }
+    })
+
     .state('tab.friends', {
       url: '/friends',
       views: {
@@ -47,28 +69,29 @@ angular.module('sup', ['ionic', 'sup.controllers', 'sup.services'])
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    
+    .state('tab.addFriend', {
+      url: '/addFriend', // this becomes stateParams.friendId
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-addFriend': {
+          templateUrl: 'templates/addFriend.html',
+          controller: 'AddFriendCtrl'
         }
       }
     })
 
-    .state('tab.account', {
-      url: '/account',
+    .state('tab.sup', {
+      url: '/sup',
       views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
+        'tab-sup': {
+          templateUrl: 'templates/tab-sup.html',
+          controller: 'SupCtrl'
         }
       }
     })
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/friends');
+  $urlRouterProvider.otherwise('/tab/signup');
 
 });
 

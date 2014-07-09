@@ -70,12 +70,12 @@ angular.module('sup', ['ionic', 'firebase', 'sup.controllers', 'sup.services'])
       }
     })
     
-    .state('tab.friend-detail', {
-      url: '/friends/:friendId', // this becomes stateParams.friendId
+    .state('tab.addFriend', {
+      url: '/addFriend', // this becomes stateParams.friendId
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-addFriend': {
+          templateUrl: 'templates/addFriend.html',
+          controller: 'AddFriendCtrl'
         }
       }
     })
